@@ -17,6 +17,9 @@ import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
 import Pricing from "./pages/Pricing";
 import Integrations from "./pages/Integrations";
+import Contact from "./pages/Contact";
+import FAQ from "./pages/FAQ";
+import Support from "./pages/Support";
 
 // Initialize QueryClient
 const queryClient = new QueryClient();
@@ -40,6 +43,9 @@ const App = () => (
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/integrations" element={<Integrations />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/support" element={<Support />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
