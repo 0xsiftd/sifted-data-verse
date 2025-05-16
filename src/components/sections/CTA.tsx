@@ -1,8 +1,16 @@
 
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import DemoRequestForm from "./DemoRequestForm";
 
 const CTA = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate("/marketplace");
+  };
+
   return (
     <section className="py-20">
       <div className="container mx-auto px-4">
@@ -55,8 +63,8 @@ const CTA = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <Button size="lg">Get Started Now</Button>
-              <Button variant="outline" size="lg">Schedule a Demo</Button>
+              <Button size="lg" onClick={handleGetStarted}>Get Started Now</Button>
+              <DemoRequestForm />
             </motion.div>
           </div>
         </div>
