@@ -16,7 +16,13 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <motion.div 
+      className="min-h-screen flex flex-col"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    >
       <Header />
       <main className="flex-grow pt-16">
         <Hero />
@@ -26,7 +32,7 @@ const Index = () => {
         <CTA />
       </main>
       <Footer />
-    </div>
+    </motion.div>
   );
 };
 

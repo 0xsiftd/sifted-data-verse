@@ -1,26 +1,37 @@
 
 import { motion } from "framer-motion";
+import { 
+  DataCollectionIcon, 
+  BlockchainVerificationIcon,
+  QualityValidationIcon,
+  EnterpriseAccessIcon
+} from "@/components/icons/ProcessIcons";
+import Container from "@/components/common/Container";
 
 const steps = [
   {
     number: "01",
     title: "Data Collection",
     description: "Contributors submit various types of data through our mobile and web applications, earning rewards for their contributions.",
+    icon: DataCollectionIcon
   },
   {
     number: "02",
     title: "Blockchain Verification",
     description: "All submitted data is verified and secured on our blockchain, ensuring transparency and immutability.",
+    icon: BlockchainVerificationIcon
   },
   {
     number: "03",
     title: "Quality Validation",
     description: "Our AI-powered system validates data quality, ensuring only the highest quality datasets reach the marketplace.",
+    icon: QualityValidationIcon
   },
   {
     number: "04",
     title: "Enterprise Access",
     description: "Businesses access verified, high-quality datasets through our marketplace, with complete transparency of origin and validation.",
+    icon: EnterpriseAccessIcon
   },
 ];
 
@@ -46,8 +57,8 @@ const HowItWorks = () => {
   };
 
   return (
-    <section className="py-20 bg-secondary/30 relative overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-secondary/30 relative overflow-hidden" id="how-it-works">
+      <Container>
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.span 
             className="block mb-2 text-sm font-medium text-tech-blue-500"
@@ -126,10 +137,8 @@ const HowItWorks = () => {
                       {step.number}
                     </div>
                     <div className="w-full aspect-[4/3] mt-8 md:mt-0 bg-gradient-to-br from-tech-blue-100/30 to-accent-purple-100/30 dark:from-tech-blue-900/10 dark:to-accent-purple-900/10 rounded-xl overflow-hidden border border-border flex items-center justify-center">
-                      <div className="text-center p-6">
-                        <div className="text-6xl font-display text-tech-blue-500 dark:text-tech-blue-400 opacity-80">
-                          {`0${index + 1}`}
-                        </div>
+                      <div className="p-6">
+                        {<step.icon className="h-32 w-32 md:h-40 md:w-40 text-tech-blue-500 dark:text-tech-blue-400" />}
                       </div>
                     </div>
                   </div>
@@ -142,7 +151,7 @@ const HowItWorks = () => {
             ))}
           </motion.div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

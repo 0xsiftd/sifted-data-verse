@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import Logo from "@/components/common/Logo";
+import DemoRequestForm from "@/components/sections/DemoRequestForm";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,7 +25,6 @@ const Header = () => {
     { name: "Solutions", path: "/solutions" },
     { name: "Marketplace", path: "/marketplace" },
     { name: "For Contributors", path: "/contributors" },
-    { name: "Blog", path: "/blog" },
   ];
 
   return (
@@ -55,11 +55,8 @@ const Header = () => {
             ))}
           </nav>
           
-          <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline" size="sm">
-              Login
-            </Button>
-            <Button size="sm">Get Started</Button>
+          <div className="hidden md:block">
+            <DemoRequestForm />
           </div>
           
           <div className="md:hidden">
@@ -93,11 +90,8 @@ const Header = () => {
                 {link.name}
               </Link>
             ))}
-            <div className="pt-2 flex flex-col space-y-2">
-              <Button variant="outline" className="w-full">
-                Login
-              </Button>
-              <Button className="w-full">Get Started</Button>
+            <div className="pt-2">
+              <DemoRequestForm />
             </div>
           </div>
         </div>
