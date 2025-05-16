@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Bell, BellOff } from "lucide-react";
+import { Bell, BellOff, AlertCircle } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -25,6 +25,8 @@ const NewsletterForm = () => {
   const [optOutEmail, setOptOutEmail] = useState("");
   const [optOutReason, setOptOutReason] = useState("");
   const [marketingConsent, setMarketingConsent] = useState(true);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [confirmationEmail, setConfirmationEmail] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,10 +48,8 @@ const NewsletterForm = () => {
     // Simulate API call
     setTimeout(() => {
       setIsSubmitting(false);
-      toast({
-        title: "Thanks for subscribing!",
-        description: "Please check your email to confirm your subscription.",
-      });
+      setConfirmationEmail(email);
+      setShowConfirmation(true);
       setEmail("");
     }, 1000);
   };
@@ -87,6 +87,14 @@ const NewsletterForm = () => {
     }, 1000);
   };
 
+  const handleConfirmation = () => {
+    toast({
+      title: "Thanks for subscribing!",
+      description: "Please check your email to confirm your subscription.",
+    });
+    setShowConfirmation(false);
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit} className="mt-2 relative">
@@ -106,7 +114,12 @@ const NewsletterForm = () => {
               <Bell className="h-4 w-4" />
             </div>
           </div>
-          {error && <p className="text-xs text-destructive">{error}</p>}
+          {error && (
+            <div className="flex items-center gap-1 text-xs text-destructive">
+              <AlertCircle className="h-3 w-3" />
+              <span>{error}</span>
+            </div>
+          )}
           
           <div className="flex items-center space-x-2 mb-2">
             <Checkbox 
@@ -136,6 +149,22 @@ const NewsletterForm = () => {
         </button>
       </form>
 
+      {/* Subscription confirmation dialog */}
+      <AlertDialog open={showConfirmation} onOpenChange={setShowConfirmation}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirm Your Subscription</AlertDialogTitle>
+            <AlertDialogDescription>
+              We've sent a confirmation email to <strong>{confirmationEmail}</strong>. Please check your inbox and confirm your subscription by clicking the link in the email.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={handleConfirmation}>Got it</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Unsubscribe dialog */}
       <AlertDialog open={showOptOut} onOpenChange={setShowOptOut}>
         <AlertDialogContent>
           <AlertDialogHeader>
